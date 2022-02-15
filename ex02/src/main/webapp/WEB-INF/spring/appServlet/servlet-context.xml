@@ -22,7 +22,5 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.zerock.controller" />
-	
-	
-	
+	<context:component-scan base-package="org.zerock.mapper" />
 </beans:beans>
