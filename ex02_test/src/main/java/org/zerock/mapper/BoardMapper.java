@@ -2,14 +2,13 @@ package org.zerock.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
 import org.zerock.domain.BoardVO;
 
 public interface BoardMapper {
-//	@Select("SELECT * FROM tbl_board WHERE writer=newble")
+	
+//	@Select("Select * FROM tbl_board WHERE bno= > 0")
 	public List<BoardVO> getList();
 	
-//	@Insert("INSERT INTO tbl_board(bno, title, content, writer) VALUES (seq_board.nextval, 'test_title', 'test_content', 'test_writer')")
 	public void insert(BoardVO board);
 	
 	public void insertSelectKey(BoardVO board);

@@ -1,6 +1,6 @@
 package org.zerock.mapper;
 
-import java.sql.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,8 +45,9 @@ public class BoardMapperTests {
 		board.setContent("새로 작성하는 내용 select Key");
 		board.setWriter("newble");
 		
+		log.info("[testInsertSelectKey] ori bno : "+board.getBno());		
 		mapper.insertSelectKey(board);
-		log.info("[testInsertSelectKey] bno : "+board.getBno());		
+		log.info("[testInsertSelectKey] after bno : "+board.getBno());		
 		log.info(board);
 	}
 	
