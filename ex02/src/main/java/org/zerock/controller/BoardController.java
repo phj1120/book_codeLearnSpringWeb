@@ -22,10 +22,15 @@ public class BoardController {
 //	@Setter(onMethod_ = @Autowired)
 	private BoardService service;
 	
-	@GetMapping("/list")
+	@GetMapping("/list") // http://localhost/board/list
 	public void list(Model m) {
 		log.info("list");
 		m.addAttribute("list", service.getList());
+	}
+
+	@GetMapping("/register") // http://localhost/board/register
+	public void register() {
+		
 	}
 	
 	@PostMapping("/register")
@@ -36,9 +41,9 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping("/read")
+	@GetMapping("/get")
 	public void read(@RequestParam("bno") long bno, Model m) {
-		log.info("[read]");
+		log.info("[get]");
 		m.addAttribute("board", service.get(bno));
 	}
 	
