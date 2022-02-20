@@ -43,7 +43,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public boolean remove(Long bno) {
 		log.info("[BoardServiceImpl.remove]");
-		return mapper.delete(bno) == 0;
+		// 삭제시 modal 창 안떠서 왜 그런지 한참 찾았음
+		// return 을 0 으로 해서 오류 발생
+		return mapper.delete(bno) == 1;
 	}
 
 	@Override

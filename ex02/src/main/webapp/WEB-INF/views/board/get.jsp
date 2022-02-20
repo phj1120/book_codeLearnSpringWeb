@@ -38,13 +38,38 @@
     			<input class="form-control" name="writer" value='<c:out value="${board.writer }"/>' readonly="readonly">
    			</div>
    			
-           	<button data-oper='modify' class="btn btn-default" onclick="location.href='/board/modify?bno=<c:out value="${board.bno }"/>'">modify Button</button>		       		
-           	<button data-oper="list" class="btn btn-default" onclick="location.href='/board/list'">List</button>		       		
+<%--        버튼으로 직접 링크 처리    	
+			<button data-oper='modify' class="btn btn-default" onclick="location.href='/board/modify?bno=<c:out value="${board.bno }"/>'">modify Button</button>		       		
+           	<button data-oper="list" class="btn btn-default" onclick="location.href='/board/list'">List</button> --%>
+           	<button data-oper='modify' class="btn btn-default">modify Button</button>		       		
+           	<button data-oper="list" class="btn btn-default">List</button>		       		
+       		
+			<form id='operForm' action="/board/modify" method="get">
+				<!-- modify 의 경우 파라미터로 bno 가 필요하므로 보이지 않는 hidden 을 이용해 처리 -->
+				<input type="hidden" id='bno' name='bno' value='<c:out value="${board.bno }" />'>
+       		</form>
        		</div>
         </div>
         <!-- end panel -->
     </div>
     <!-- /.col-lg-6 -->
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	var operForm = $("#operForm");
+	
+	$("button[data-oper='modify']").on("click", function(e){
+		operForm.attr("action", "/board/modify").submit();
+	});
+	
+	$("button[data-oper='list']").on("click", function(e){
+		// form 의 input 에서 bno 를 받아 파라미터로 같이 보내는데 
+		// 전체 리스트로 갈 경우 필요 없으므로 파라미터에서 삭제
+		operForm.find("#bno").remove();
+		operForm.attr("action", "/board/list")
+		operForm.submit();
+	});
+});
 
+</script>
 <%@include file="../includes/footer.jsp" %>
