@@ -24,6 +24,8 @@ public class BoardServiceTests {
 	@Setter(onMethod_ = @Autowired)
 	private BoardService service;
 	
+	
+	// 서비스가 존재하는지 확인
 	@Test
 	public void testExist() {
 		log.info(service);
@@ -43,7 +45,7 @@ public class BoardServiceTests {
 	
 	@Test
 	public void testGet() {
-		log.info("[BoardServiceTests.testGet] "+ service.get(72L));
+		log.info("[BoardServiceTests.testGet] "+ service.get(162L));
 	}
 
 	@Test
