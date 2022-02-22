@@ -2,8 +2,8 @@ package org.zerock.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 public interface BoardMapper {
 //	@Select("SELECT * FROM tbl_board WHERE writer=newble")
@@ -19,4 +19,6 @@ public interface BoardMapper {
 	public int delete(Long bno);
 	
 	public int update(BoardVO board);
+	
+	public List<BoardVO> getList(Criteria criteria);
 }

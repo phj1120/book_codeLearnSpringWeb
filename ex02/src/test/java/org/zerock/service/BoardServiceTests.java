@@ -2,16 +2,14 @@ package org.zerock.service;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
-import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -48,10 +46,19 @@ public class BoardServiceTests {
 		log.info("[BoardServiceTests.testGet] "+ service.get(162L));
 	}
 
+//	@Test
+//	public void testGetList() {
+//		service.getList().forEach(board -> log.info("[BoardServiceTests.testGetList] : "+board));
+//	}
 	@Test
 	public void testGetList() {
-		service.getList().forEach(board -> log.info("[BoardServiceTests.testGetList] : "+board));
+		log.info("[testGetListWithPaging]");
+		Criteria criteria = new Criteria();
+		criteria.setPageNum(3);
+		criteria.setAmount(10);
+		service.getList(criteria);
 	}
+	
 	
 	@Test
 	public void testModify() {
@@ -69,4 +76,6 @@ public class BoardServiceTests {
 	public void testRemove() {
 		log.info("[BoardServiceTests.testModify] 삭제 여부 : " + service.remove(90L));
 	}
+	
+
 }

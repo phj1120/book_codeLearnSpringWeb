@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.service.BoardService;
 
@@ -54,33 +54,39 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register")
-	public String registerPost(BoardVO board) {
+	public String registerPost(BoardVO board, RedirectAttributes rttr) {
 		service.create(board);
-		
+		rttr.addFlashAttribute("result", board.getBno());
+		log.info("[registerPost]");
 		return "redirect:/board/list";
 	}
 	
 	@GetMapping("/register")
 	public void registerGet() {
-		
+		log.info("[registerGet]");
 	}
 	
 	@GetMapping({"/get", "/modify"})
 	public void read(long bno, Model model) {
 		model.addAttribute("board", service.read(bno));
+		log.info("[get or modify]");
 	}
 	
 	@PostMapping("remove")
-	public String remove(long bno) {
-		service.delete(bno);
-		
+	public String remove(long bno, RedirectAttributes rttr) {
+		if(service.delete(bno)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		log.info("[remove]");
 		return "redirect:/board/list";
 	}
 	
 	@PostMapping("modify")
-	public String modify(BoardVO board) {
-		service.update(board);
-		
+	public String modify(BoardVO board, RedirectAttributes rttr) {
+		if(service.update(board)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		log.info("[modify]");
 		return "redirect:/board/list";
 	}
 	

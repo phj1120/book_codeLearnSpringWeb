@@ -2,14 +2,12 @@ package org.zerock.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 
@@ -48,10 +46,16 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delete(bno) == 1;
 	}
 
+//	@Override
+//	public List<BoardVO> getList() {
+//		log.info("[BoardServiceImpl.getList]");
+//		return mapper.getList();
+//	}
+	
 	@Override
-	public List<BoardVO> getList() {
-		log.info("[BoardServiceImpl.getList]");
-		return mapper.getList();
+	public List<BoardVO> getList(Criteria criteria){
+		log.info("[getList]");
+		return mapper.getList(criteria);
 	}
 	
 }
