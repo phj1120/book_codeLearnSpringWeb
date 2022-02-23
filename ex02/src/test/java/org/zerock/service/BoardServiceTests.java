@@ -77,5 +77,9 @@ public class BoardServiceTests {
 		log.info("[BoardServiceTests.testModify] 삭제 여부 : " + service.remove(90L));
 	}
 	
+	@Test
+	public void testGgetTotalCount() {
+		log.info("[BoardServiceTests.testGgetTotalCount] 총 페이지 수 : " + service.getTotalCount(new Criteria()));
+	}
 
 }

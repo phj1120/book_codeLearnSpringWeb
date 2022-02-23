@@ -15,9 +15,6 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
 			<form action="/board/modify" method="post">
-				<input class="form-control" name="title">
-				<input type='hidden' name="pageNum" value='${cri.pageNum }'/>
-           		<input type='hidden' name="amount" value='${cri.amount}'/>   
 	            <div class="panel-heading">Board modify Page</div>
 	            <div class="panel-body">
 	            
@@ -50,12 +47,12 @@
 	    			<label>updateDate</label> 
 	    			<input class="form-control" name="updateDate" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${board.updateDate }"/>' readonly="readonly">
 	   			</div>
-	   			
+				<input type='hidden' name='pageNum' value='${cri.pageNum }'/>
+           		<input type='hidden' name='amount' value='${cri.amount}'/> 
+ 
 	           	<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>		       		
 	           	<button type="submit" data-oper='remove' class="btn btn-default">Remove</button>		       		
 	           	<button type="submit" data-oper="list" class="btn btn-default">List</button>	
-	           		
-				    		
 	       		</div>
        		</form>
         </div>
@@ -71,20 +68,19 @@ $(document).ready(function(){
 	
 	$('button').on("click", function(e){
 		e.preventDefault();
-		
 		var operation =$(this).data("oper");
 		
-		console.log(operation);
-		
 		if(operation === 'remove'){
-			// form 에서 method=post 로 지정
 			formObj.attr("action", "/board/remove");
+			// form 에 있는 내용 다 전송하는 것이 비효율적인것 같으나 일단 보류함
 		}else if (operation === 'list'){
-			// board/list 는 get 이므로
-			// self.location ="/board/list";
-			// return;
-			formObj.attr("action", "/board/list").attr("method", "get")
+			formObj.attr("action", "/board/list").attr("method", "get");
+			// form 태그 내의 내용 삭제 후 원하는 태그만 추가하는 작업
+			var pageNumTag = $("input[name='pageNum']").clone();
+			var amountTag = $("input[name='amount']").clone();
 			formObj.empty();
+			formObj.append(pageNumTag);
+			formObj.append(amountTag);
  		}
 		formObj.submit();
 	});

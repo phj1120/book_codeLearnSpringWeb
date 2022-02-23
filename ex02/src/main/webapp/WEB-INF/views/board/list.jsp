@@ -71,7 +71,7 @@
            			</ul>
             	</div>
             	
-            	<form id='actionForm' action="/board/list" mothod='get'>
+            	<form id='actionForm' action="/board/list" method='get'>
             		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'/>
             		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'/>
             	</form>
@@ -128,11 +128,11 @@ $(document).ready(function(){
 
 		}
 	
-	$("#regBtn").on("click", function(){
-		self.location = "/board/register";
-	});	
-	
 	var actionForm = $("#actionForm");
+	
+	$("#regBtn").on("click", function(){
+		self.location = "/board/register?pageNum="+${pageMaker.cri.pageNum}+"&amount="+${pageMaker.cri.amount};
+	});	
 	
 	$(".paginate_button a").on("click", function(e){
 		e.preventDefault();
@@ -147,8 +147,6 @@ $(document).ready(function(){
 		actionForm.attr("action", "/board/get");
 		actionForm.submit();
 	});
-	
-	
 });
 
 

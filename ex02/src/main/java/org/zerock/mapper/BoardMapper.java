@@ -21,4 +21,7 @@ public interface BoardMapper {
 	public int update(BoardVO board);
 	
 	public List<BoardVO> getList(Criteria criteria);
+	
+	// 필요 없지만 추후 검색을 위해 cri 매개변수로 받음
+	public int getTotalCount(Criteria cri);
 }

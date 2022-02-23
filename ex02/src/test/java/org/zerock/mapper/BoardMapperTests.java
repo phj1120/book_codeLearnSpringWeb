@@ -90,6 +90,13 @@ public class BoardMapperTests {
 		log.info("[testUpdate] count : "+mapper.update(board));
 		log.info("[testUpdate] 실행 후 : "+mapper.read(bno));
 	}
+	
+	@Test
+	public void testGetTotalCount() {
+		Criteria cri = new Criteria();
+		log.info("[testGetTotalCount] : "+mapper.getTotalCount(cri));
+		
+	}
 
 }	
 

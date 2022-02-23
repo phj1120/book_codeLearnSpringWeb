@@ -45,10 +45,10 @@
            	<button data-oper="list" class="btn btn-default">List</button>		       		
        		
 			<form id='operForm' action="/board/modify" method="get">
-				<!-- modify 의 경우 파라미터로 bno 가 필요하므로 보이지 않는 hidden 을 이용해 처리 -->
+				<!-- list를 보여 줄 경우 bno 는 필요 없어지므로 script 에서 지우기 위해 id 지정  -->
 				<input type="hidden" id='bno' name='bno' value='<c:out value="${board.bno }" />'>
-				<input type='hidden' name='pageNum' value='${cri.pageNum }'/>
-           		<input type='hidden' name='amount' value='${cri.amount}'/>
+				<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }" />'/>
+           		<input type='hidden' name='amount' value='<c:out value="${cri.amount}" />'/>
        		</form>
        		</div>
         </div>
@@ -65,8 +65,6 @@ $(document).ready(function(){
 	});
 	
 	$("button[data-oper='list']").on("click", function(e){
-		// form 의 input 에서 bno 를 받아 파라미터로 같이 보내는데 
-		// 전체 리스트로 갈 경우 필요 없으므로 파라미터에서 삭제
 		operForm.find("#bno").remove();
 		operForm.attr("action", "/board/list")
 		operForm.submit();

@@ -18,7 +18,9 @@
             <div class="panel-heading">Board Register</div>
             <div class="panel-body">
             
-            	<form role="form" action="/board/register" method="post">
+            	<form role="form" action="<c:out value='/board/register?pageNum=${cri.pageNum }&amount=${cri.amount }' />" method="post">
+<%-- 	            	<input type='hidden' name='pageNum' value='${cri.pageNum }'/>
+	           		<input type='hidden' name='amount' value='${cri.amount}'/>    --%>
             		<div class="form-group">
             			<label>Title</label> 
             			<input class="form-control" name="title">
