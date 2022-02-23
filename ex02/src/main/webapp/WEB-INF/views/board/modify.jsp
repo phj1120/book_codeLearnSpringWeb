@@ -15,6 +15,9 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
 			<form action="/board/modify" method="post">
+				<input class="form-control" name="title">
+				<input type='hidden' name="pageNum" value='${cri.pageNum }'/>
+           		<input type='hidden' name="amount" value='${cri.amount}'/>   
 	            <div class="panel-heading">Board modify Page</div>
 	            <div class="panel-body">
 	            
@@ -50,7 +53,9 @@
 	   			
 	           	<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>		       		
 	           	<button type="submit" data-oper='remove' class="btn btn-default">Remove</button>		       		
-	           	<button type="submit" data-oper="list" class="btn btn-default">List</button>		       		
+	           	<button type="submit" data-oper="list" class="btn btn-default">List</button>	
+	           		
+				    		
 	       		</div>
        		</form>
         </div>

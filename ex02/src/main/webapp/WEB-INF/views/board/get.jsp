@@ -47,6 +47,8 @@
 			<form id='operForm' action="/board/modify" method="get">
 				<!-- modify 의 경우 파라미터로 bno 가 필요하므로 보이지 않는 hidden 을 이용해 처리 -->
 				<input type="hidden" id='bno' name='bno' value='<c:out value="${board.bno }" />'>
+				<input type='hidden' name='pageNum' value='${cri.pageNum }'/>
+           		<input type='hidden' name='amount' value='${cri.amount}'/>
        		</form>
        		</div>
         </div>
