@@ -5,7 +5,9 @@
 <mapper namespace="org.zerock.mapper.BoardMapper">
 	<select id="getList" resultType="org.zerock.domain.BoardVO">
 	<![CDATA[
-	SELECT * FROM tbl_board WHERE bno > 0
+	SELECT bno, title, content, writer, regDate, updateDate
+	FROM (SELECT /*+ INDEX_DESC (tbl_board pk_board) */ ROWNUM rn, bno, title, content, writer, regDate, updateDate FROM tbl_board WHERE rownum <= #{pageNum} * #{amount} )
+	WHERE rn > (#{pageNum}-1)*#{amount}
 	]]>
 	</select>
 	
@@ -33,5 +35,9 @@
 	<delete id="delete">
 		DELETE FROM tbl_board WHERE bno=#{bno}
 	</delete>
+	
+	<select id="getTotalContent" resultType="int">
+		SELECT /*+ INDEX (tbl_board pk_board) */count(bno) FROM tbl_board WHERE bno>0
+	</select>
 	
 </mapper>

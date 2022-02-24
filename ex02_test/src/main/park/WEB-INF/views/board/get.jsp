@@ -37,6 +37,7 @@
     			<label>Writer</label> 
     			<input class="form-control" name="writer" value='<c:out value="${board.writer }"/>' readonly="readonly">
    			</div>
+   	
    			
 <%--        버튼으로 직접 링크 처리    	
 			<button data-oper='modify' class="btn btn-default" onclick="location.href='/board/modify?bno=<c:out value="${board.bno }"/>'">modify Button</button>		       		
@@ -47,6 +48,8 @@
 			<form id='operForm' action="<c:url value='/board/modify' />" method="get">
 				<!-- modify 의 경우 파라미터로 bno 가 필요하므로 보이지 않는 hidden 을 이용해 처리 -->
 				<input type="hidden" id='bno' name='bno' value='<c:out value="${board.bno }" />'>
+ 				<input type="hidden" name="pageNum" value="${cri.pageNum }"/>
+	   			<input type="hidden" name="amount" value="${cri.amount }"/>
        		</form>
        		</div>
         </div>

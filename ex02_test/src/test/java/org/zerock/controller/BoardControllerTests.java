@@ -18,8 +18,8 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration({
-	"file:src/main/webapp/WEB-INF/spring/root-context.xml",
-	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+	"file:src/main/park/WEB-INF/spring/root-context.xml",
+	"file:src/main/park/WEB-INF/spring/appServlet/servlet-context.xml"})
 @Log4j
 public class BoardControllerTests {
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -29,9 +30,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria cri) {
 		log.info("[getList]");
-		return mapper.getList();
+		return mapper.getList(cri);
 	}
 
 	@Override
@@ -44,6 +45,12 @@ public class BoardServiceImpl implements BoardService {
 	public boolean delete(Long bno) {
 		log.info("[delete]");
 		return mapper.delete(bno) == 1;
+	}
+
+	@Override
+	public int getTotalContent(Criteria cri) {
+		log.info("[getTotalContent]");
+		return mapper.getTotalContent(cri);
 	}
 
 }

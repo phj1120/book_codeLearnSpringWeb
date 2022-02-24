@@ -55,7 +55,7 @@ public class BoardController {
 		m.addAttribute("board", service.get(bno));
 	}
 	
-	@PostMapping("remove")
+	@PostMapping("/remove")
 	public String remove(long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("[remove]");
 		if(service.remove(bno)) {
@@ -66,7 +66,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@PostMapping("modify")
+	@PostMapping("/modify")
 	public String modify(HttpServletRequest request, BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("[modify]");
 		log.info(request.getQueryString());
